@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  MyHabits
-//
-//  Created by Дмитрий Порядин on 06.03.2024.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
