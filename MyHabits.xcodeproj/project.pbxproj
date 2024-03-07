@@ -12,6 +12,10 @@
 		642AA5152B982B6A00700255 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642AA5142B982B6A00700255 /* ViewController.swift */; };
 		642AA51A2B982B6A00700255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 642AA5192B982B6A00700255 /* Assets.xcassets */; };
 		642AA51D2B982B6A00700255 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642AA51B2B982B6A00700255 /* LaunchScreen.storyboard */; };
+		642AA5272B99032100700255 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642AA5262B99032100700255 /* HabitsStore.swift */; };
+		64884A822B9A57D600A33452 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64884A812B9A57D600A33452 /* TabBarController.swift */; };
+		64884A842B9A585B00A33452 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64884A832B9A585B00A33452 /* HabitsViewController.swift */; };
+		64884A862B9A58A500A33452 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64884A852B9A58A500A33452 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		642AA5192B982B6A00700255 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		642AA51C2B982B6A00700255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		642AA51E2B982B6A00700255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		642AA5262B99032100700255 /* HabitsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
+		64884A812B9A57D600A33452 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		64884A832B9A585B00A33452 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
+		64884A852B9A58A500A33452 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,26 @@
 		642AA50F2B982B6A00700255 /* MyHabits */ = {
 			isa = PBXGroup;
 			children = (
-				642AA5102B982B6A00700255 /* AppDelegate.swift */,
-				642AA5122B982B6A00700255 /* SceneDelegate.swift */,
+				642AA5252B98FB6400700255 /* AppDelegate */,
 				642AA5142B982B6A00700255 /* ViewController.swift */,
-				642AA5192B982B6A00700255 /* Assets.xcassets */,
+				642AA5262B99032100700255 /* HabitsStore.swift */,
 				642AA51B2B982B6A00700255 /* LaunchScreen.storyboard */,
+				642AA5192B982B6A00700255 /* Assets.xcassets */,
 				642AA51E2B982B6A00700255 /* Info.plist */,
+				64884A812B9A57D600A33452 /* TabBarController.swift */,
+				64884A832B9A585B00A33452 /* HabitsViewController.swift */,
+				64884A852B9A58A500A33452 /* InfoViewController.swift */,
 			);
 			path = MyHabits;
+			sourceTree = "<group>";
+		};
+		642AA5252B98FB6400700255 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				642AA5102B982B6A00700255 /* AppDelegate.swift */,
+				642AA5122B982B6A00700255 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +154,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642AA5272B99032100700255 /* HabitsStore.swift in Sources */,
+				64884A842B9A585B00A33452 /* HabitsViewController.swift in Sources */,
 				642AA5152B982B6A00700255 /* ViewController.swift in Sources */,
+				64884A862B9A58A500A33452 /* InfoViewController.swift in Sources */,
 				642AA5112B982B6A00700255 /* AppDelegate.swift in Sources */,
+				64884A822B9A57D600A33452 /* TabBarController.swift in Sources */,
 				642AA5132B982B6A00700255 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,9 +308,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,9 +340,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyHabits/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
