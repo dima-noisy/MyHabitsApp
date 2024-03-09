@@ -5,8 +5,13 @@ class HabitsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemRed
-        
+        setupView()
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Сегодня"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
 }

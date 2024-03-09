@@ -23,7 +23,7 @@
                                 <color key="textColor" name="Color(161,22,204)"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-tt-xMl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchSplash" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-tt-xMl">
                                 <rect key="frame" x="106.66666666666669" y="348.66666666666669" width="180" height="180.00000000000006"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="9wA-4g-Cxa"/>
@@ -47,7 +47,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch" width="1024" height="1024"/>
+        <image name="LaunchSplash" width="1024" height="1024"/>
         <namedColor name="Color(161,22,204)">
             <color red="0.63137254901960782" green="0.086274509803921567" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
