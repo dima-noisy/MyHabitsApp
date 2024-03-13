@@ -175,7 +175,7 @@ public final class HabitsStore {
     
     // MARK: - Private
     
-    private init() {
+    public init() {
         if userDefaults.value(forKey: "start_date") == nil {
             let startDate = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: Date())) ?? Date()
             userDefaults.setValue(startDate, forKey: "start_date")

@@ -7,10 +7,11 @@ class TabAndNavBarsController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        
+        setupView()
     }
     
-    private func setupUI() {
+    private func setupView() {
         
         let tabBarController = UITabBarController()
         let habitsViewController = HabitsViewController()
@@ -48,4 +49,3 @@ class TabAndNavBarsController: UITabBarController {
         tabBarController.selectedIndex = 0
     }
 }
-
