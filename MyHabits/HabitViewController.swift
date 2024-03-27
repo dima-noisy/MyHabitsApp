@@ -90,12 +90,16 @@ class HabitViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     private func setupView() {
         view.backgroundColor = .systemBackground
-        title = "Создать"
         navigationItem.title = "Создать"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(buttonPressed))
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(cancelPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(savePressed))
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func addSubviews() {
@@ -138,8 +142,17 @@ class HabitViewController: UIViewController {
         ])
     }
     
-    @objc func buttonPressed() {
-        
+    @objc func cancelPressed() {
+        dismiss(animated: true)
+    }
+    
+    @objc func savePressed() {
+        let newHabit = Habit(name: nameField.text ?? "Без названия",
+                             date: timePicker.date,
+                             color: (colorButton.backgroundColor ?? UIColor(named: "Color(161,22,204)"))!)
+        let store = HabitsStore.shared
+        store.habits.append(newHabit)
+        dismiss(animated: true)
     }
     
     @objc func didTapSelectColor() {
