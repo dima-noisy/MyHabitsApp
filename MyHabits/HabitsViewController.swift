@@ -15,6 +15,7 @@ public class HabitsViewController: UIViewController {
             collectionViewLayout: viewLayout
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = UIColor(named: "Color(242,242,247)")
         
         collectionView.register(
             ProgressCollectionViewCell.self,
@@ -34,6 +35,7 @@ public class HabitsViewController: UIViewController {
         setupView()
         setupCollectionView()
         setupLayouts()
+        self.collectionView.reloadData()
     }
     
     private func setupView() {
@@ -63,16 +65,9 @@ public class HabitsViewController: UIViewController {
     
     private enum LayoutConstant {
         static let spacing: CGFloat = 16.0
-        static let itemHeight: CGFloat = 70.0
+        static let progressHeight: CGFloat = 70.0
+        static let habitHeight: CGFloat = 150.0
     }
-    
-    /*
-    private func tuneTableView() {
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 50.0
-        
-    }
-*/
     
     @objc func addTapped() {
         let newHabitViewController = HabitViewController()
@@ -152,12 +147,17 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
+        
         let width = itemWidth(
             for: view.frame.width,
             spacing: LayoutConstant.spacing
         )
         
-        return CGSize(width: width, height: LayoutConstant.itemHeight)
+        if indexPath.section == 0 {
+            return CGSize(width: width, height: LayoutConstant.progressHeight)
+        } else {
+            return CGSize(width: width, height: LayoutConstant.habitHeight)
+        }
     }
 
     public func collectionView(

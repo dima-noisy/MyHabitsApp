@@ -3,20 +3,17 @@ import UIKit
 class ProgressCollectionViewCell: UICollectionViewCell {
     
     private enum Constants {
-        // Generic layout constants
         static let verticalSpacing: CGFloat = 8.0
         static let horizontalPadding: CGFloat = 16.0
         static let profileDescriptionVerticalPadding: CGFloat = 8.0
-        
-        // contentView layout constants
-        static let contentViewCornerRadius: CGFloat = 4.0
+        static let contentViewCornerRadius: CGFloat = 10.0
     }
     
     private lazy var motivationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Всё получится!"
-        label.textColor = .systemGray2
+        label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
 
@@ -27,7 +24,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "\(Int(HabitsStore.shared.todayProgress * 100.0))%"
-        label.textColor = .systemGray2
+        label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.numberOfLines = 1
 
@@ -71,8 +68,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private func setupLayouts() {
         
-        //let safeAreaGuide = self.safeAreaLayoutGuide
-        
         NSLayoutConstraint.activate([
             motivationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             motivationLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.0),
@@ -86,16 +81,5 @@ class ProgressCollectionViewCell: UICollectionViewCell {
             progressLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
         ])
     }
-    /*
-    func setup(
-        with profile: Habit
-    ) {
-        profileImageView.image = UIImage(named: profile.imageName)
-        nameLabel.text = profile.name
-        locationLabel.text = profile.location
-        professionLabel.text = profile.profession
-    }
-     */
-    
 }
 

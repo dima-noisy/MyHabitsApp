@@ -38,9 +38,7 @@ class TabAndNavBarsController: UITabBarController {
         firstTabNavigationController.tabBarItem = item1
         secondTabNavigationController.tabBarItem = item2
         
-        //UITabBar.appearance().backgroundColor = UIColor(named: "Color(242,242,247)")
         UITabBar.appearance().tintColor = UIColor(named: "Color(161,22,204)")
-        //UINavigationBar.appearance().backgroundColor = UIColor(named: "Color(242,242,247)")
         
         let controllers = [habitsViewController, infoViewController]
         tabBarController.viewControllers = controllers.map {

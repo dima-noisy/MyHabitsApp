@@ -2,13 +2,50 @@ import UIKit
 
 class HabitCollectionViewCell: UICollectionViewCell {
     
+    private enum Constants {
+        static let verticalSpacing: CGFloat = 8.0
+        static let horizontalPadding: CGFloat = 16.0
+        static let profileDescriptionVerticalPadding: CGFloat = 8.0
+        static let contentViewCornerRadius: CGFloat = 10.0
+    }
+    
     private lazy var habitName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
 
         return label
+    }()
+    
+    private lazy var everyDayAt: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.numberOfLines = 1
+        label.textColor = .systemGray2
+        
+        return label
+    }()
+    
+    private lazy var counterLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.numberOfLines = 1
+        label.textColor = .systemGray
+        
+        return label
+    }()
+    
+    private lazy var doneButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 20.0
+        button.layer.borderWidth = 2.0
+        button.layer.borderColor = UIColor.black.cgColor
+        
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -25,34 +62,43 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         contentView.clipsToBounds = true
-        //contentView.layer.cornerRadius = Constants.contentViewCornerRadius
+        contentView.layer.cornerRadius = Constants.contentViewCornerRadius
         contentView.backgroundColor = .white
     }
     
     private func addSubviews() {
         contentView.addSubview(habitName)
+        contentView.addSubview(everyDayAt)
+        contentView.addSubview(counterLabel)
+        contentView.addSubview(doneButton)
     }
     
     private func setupLayouts() {
         
-        //let safeAreaGuide = self.safeAreaLayoutGuide
-        
         NSLayoutConstraint.activate([
             habitName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-            habitName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.0)
+            habitName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70.0),
+            habitName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.0),
+            
+            everyDayAt.leadingAnchor.constraint(equalTo: habitName.leadingAnchor),
+            everyDayAt.topAnchor.constraint(equalTo: habitName.bottomAnchor, constant: 10.0),
+            
+            counterLabel.leadingAnchor.constraint(equalTo: habitName.leadingAnchor),
+            counterLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
+            
+            doneButton.widthAnchor.constraint(equalToConstant: 40.0),
+            doneButton.heightAnchor.constraint(equalToConstant: 40.0),
+            doneButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25.0),
+            doneButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
     
     func configure(with oneOfHabits: Habit) {
         habitName.text = oneOfHabits.name
         habitName.textColor = oneOfHabits.color
-        //textView.text = post.description
+        everyDayAt.text = oneOfHabits.dateString
+        counterLabel.text = "Счётчик: ?"
+        doneButton.layer.borderColor = oneOfHabits.color.cgColor
         //likesView.text = "Likes: \(post.likes)"
-        //viewsView.text = "Views: \(post.views)"
-        
-        //let imageProcessor = ImageProcessor()
-        //imageProcessor.processImage(sourceImage: photoView.image!, filter: .noir) {
-            //photoView.image = $0
-        //}
     }
 }
