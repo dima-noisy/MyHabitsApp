@@ -201,14 +201,10 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        print("Did select cell at \(indexPath.row)")
         
-        //let profile = profiles[indexPath.row]
-        
-        let viewController = UIViewController()
-        //viewController.title = profile.name
-        viewController.view.backgroundColor = .systemBackground
-        
-        navigationController?.pushViewController(viewController, animated: true)
+        if indexPath.section != 0 {
+            let habitDetailsViewController = HabitDetailsViewController()
+            navigationController?.pushViewController(habitDetailsViewController, animated: true)
+        }
     }
 }

@@ -9,6 +9,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
         static let contentViewCornerRadius: CGFloat = 10.0
     }
     
+    var habitCounter = 0
+    var habitIsChecked = false
+    
     private lazy var habitName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,9 +44,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
     private lazy var doneButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .white
+        button.layer.contentsGravity = .center
+        button.layer.masksToBounds = true
         button.layer.cornerRadius = 20.0
         button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.black.cgColor
+        button.addTarget(self, action: #selector(didTapDone(_:)), for: .touchUpInside)
         
         return button
     }()
@@ -97,8 +103,21 @@ class HabitCollectionViewCell: UICollectionViewCell {
         habitName.text = oneOfHabits.name
         habitName.textColor = oneOfHabits.color
         everyDayAt.text = oneOfHabits.dateString
-        counterLabel.text = "Счётчик: ?"
+        counterLabel.text = "Счётчик: \(habitCounter)"
         doneButton.layer.borderColor = oneOfHabits.color.cgColor
-        //likesView.text = "Likes: \(post.likes)"
+    }
+    
+    @objc func didTapDone(_ sender: UIButton!) {
+        let actualBackground = habitName.textColor
+        doneButton.backgroundColor = actualBackground
+        let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
+        let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        doneButton.setImage(imageCheck,for: .normal)
+        
+        habitCounter += 1
+        
+        if habitIsChecked == false { //change to .isAlreadyTakenToday
+            //HabitsStore.shared.track[indexPath.row]
+        }
     }
 }
