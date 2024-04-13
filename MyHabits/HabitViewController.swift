@@ -39,7 +39,7 @@ class HabitViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.layer.cornerRadius = 15.0
+        button.layer.cornerRadius = 20.0
         button.backgroundColor = UIColor(named: "Color(255,159,79)")
         
         button.addTarget(self, action: #selector(didTapSelectColor), for: .touchUpInside)
@@ -126,8 +126,8 @@ class HabitViewController: UIViewController {
             colorLabel.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16.0),
             colorLabel.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 16.0),
             
-            colorButton.widthAnchor.constraint(equalToConstant: 30.0),
-            colorButton.heightAnchor.constraint(equalToConstant: 30.0),
+            colorButton.widthAnchor.constraint(equalToConstant: 40.0),
+            colorButton.heightAnchor.constraint(equalToConstant: 40.0),
             colorButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 16.0),
             colorButton.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 8.0),
             
@@ -152,6 +152,10 @@ class HabitViewController: UIViewController {
                              color: (colorButton.backgroundColor ?? UIColor(named: "Color(161,22,204)"))!)
         let store = HabitsStore.shared
         store.habits.append(newHabit)
+        
+        NotificationCenter.default.post(name: Notification.Name("AddNewHabbit"), object: nil)
+        
+        
         dismiss(animated: true)
     }
     

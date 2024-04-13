@@ -35,7 +35,7 @@ public class HabitsViewController: UIViewController {
         setupView()
         setupCollectionView()
         setupLayouts()
-        self.collectionView.reloadData()
+        createObservers()
     }
     
     private func setupView() {
@@ -76,6 +76,15 @@ public class HabitsViewController: UIViewController {
         //newHabitViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(UINavigationController(rootViewController: newHabitViewController), animated: true)
         //present(newHabitViewController, animated: true)
+    }
+    
+    func createObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name("AddNewHabbit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name(rawValue: "updateProgress"), object: nil)
+    }
+    
+    @objc func updateCollection(notification: NSNotification) {
+        self.collectionView.reloadData()
     }
      
 }
