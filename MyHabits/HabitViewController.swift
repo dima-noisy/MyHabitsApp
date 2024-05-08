@@ -154,7 +154,7 @@ class HabitViewController: UIViewController {
         store.habits.append(newHabit)
         
         NotificationCenter.default.post(name: Notification.Name("AddNewHabbit"), object: nil)
-        
+        NotificationCenter.default.post(name: Notification.Name("updateProgressByAddHabit"), object: nil)
         
         dismiss(animated: true)
     }
