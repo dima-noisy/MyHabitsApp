@@ -29,11 +29,6 @@ class HabitDetailsViewController: UIViewController {
     }
     
     @objc func editTapped() {
-        //let newHabitViewController = HabitViewController()
-        //newHabitViewController.delegate = self
-        //newHabitViewController.modalTransitionStyle = .coverVertical
-        //newHabitViewController.modalPresentationStyle = .fullScreen
-        //navigationController?.present(UINavigationController(rootViewController: newHabitViewController), animated: true)
-        //present(newHabitViewController, animated: true)
+        
     }
 }

@@ -147,7 +147,10 @@ class HabitViewController: UIViewController {
     }
     
     @objc func savePressed() {
-        let newHabit = Habit(name: nameField.text ?? "Без названия",
+        
+        let habitName: String = nameField.text == "" ? "Habit #\(HabitsStore().habits.count + 1)" : nameField.text!
+
+        let newHabit = Habit(name: habitName,
                              date: timePicker.date,
                              color: (colorButton.backgroundColor ?? UIColor(named: "Color(161,22,204)"))!)
         let store = HabitsStore.shared

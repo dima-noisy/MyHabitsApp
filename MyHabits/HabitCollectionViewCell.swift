@@ -117,20 +117,23 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func didTapDone(_ sender: UIButton!) {
-
-        let habbitsSalvation = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first!
-
-        if habbitsSalvation.isAlreadyTakenToday {
-            print("is Already Taken Today")
-        } else {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
+        
+        //if HabitsStore.shared.habits[image.tag].isAlreadyTakenToday !!!Cannot find 'image' in scope
+        
+        if let habbitsSalvation = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first {
             
-            HabitsStore.shared.track(habbitsSalvation)
-            
-            doneButton.backgroundColor = habbitsSalvation.color
-            let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
-            let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-            doneButton.setImage(imageCheck,for: .normal)
+            if habbitsSalvation.isAlreadyTakenToday {
+                print("is Already Taken Today")
+            } else {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
+                
+                HabitsStore.shared.track(habbitsSalvation)
+                
+                doneButton.backgroundColor = habbitsSalvation.color
+                let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
+                let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+                doneButton.setImage(imageCheck,for: .normal)
+            }
         }
     }
     

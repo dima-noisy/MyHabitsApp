@@ -38,7 +38,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         progressLine.trackTintColor = .systemGray2
         progressLine.progressTintColor = UIColor(named: "Color(161,22,204)")
         progressLine.setProgress(HabitsStore.shared.todayProgress, animated: true)
-        //progressLine.progress = HabitsStore.shared.todayProgress
         
         return progressLine
     }()
