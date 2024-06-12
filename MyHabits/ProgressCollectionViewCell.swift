@@ -48,6 +48,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         setupView()
         addSubviews()
         setupLayouts()
+        updateProgressLine()
     }
     
     required init?(coder: NSCoder) {
@@ -81,5 +82,16 @@ class ProgressCollectionViewCell: UICollectionViewCell {
             progressLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0),
         ])
     }
+    
+    func updateProgressLine() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLine(notification:)), name: Notification.Name(rawValue: "updateProgressByAddHabit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLine(notification:)), name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
+    }
+    
+    @objc func updateLine(notification: NSNotification) {
+        progressLine.setProgress(HabitsStore.shared.todayProgress, animated: true)
+        progressLabel.text = "\(Int(HabitsStore.shared.todayProgress * 100.0))%"
+    }
+    
 }
 

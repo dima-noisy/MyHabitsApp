@@ -9,9 +9,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         static let contentViewCornerRadius: CGFloat = 10.0
     }
     
-    var habitIsChecked = false
-    
-    private lazy var habitName: UILabel = {
+    public lazy var habitName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -48,6 +46,17 @@ class HabitCollectionViewCell: UICollectionViewCell {
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 20.0
         button.layer.borderWidth = 2.0
+        
+        
+        //let habbitsState = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first
+        //if habbitsState!.isAlreadyTakenToday {
+            //let actualBackground = habitName.textColor
+            //doneButton.backgroundColor = actualBackground
+            //let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
+            //let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+            //doneButton.setImage(imageCheck,for: .normal)
+        //}
+        
         button.addTarget(self, action: #selector(didTapDone(_:)), for: .touchUpInside)
         
         return button
@@ -102,24 +111,30 @@ class HabitCollectionViewCell: UICollectionViewCell {
         habitName.text = oneOfHabits.name
         habitName.textColor = oneOfHabits.color
         everyDayAt.text = oneOfHabits.dateString
-        let index = HabitsStore().habits.firstIndex(of: oneOfHabits)
-        counterLabel.text = "Счётчик: \(HabitsStore.shared.habits[index!].trackDates.count)"
+        let indexSearcher = HabitsStore().habits.firstIndex(of: oneOfHabits)
+        counterLabel.text = "Счётчик: \(HabitsStore.shared.habits[indexSearcher!].trackDates.count)"
         doneButton.layer.borderColor = oneOfHabits.color.cgColor
     }
     
     @objc func didTapDone(_ sender: UIButton!) {
         
-        if HabitsStore.shared.habits[habitName.tag].isAlreadyTakenToday {
-            print("is Already Taken Today")
-        } else {
-            //HabitsStore.shared.habits[habitName.tag].isAlreadyTakenToday = true
-            let actualBackground = habitName.textColor
-            doneButton.backgroundColor = actualBackground
-            let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
-            let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-            doneButton.setImage(imageCheck,for: .normal)
+        //if HabitsStore.shared.habits[image.tag].isAlreadyTakenToday !!!Cannot find 'image' in scope
+        
+        if let habbitsSalvation = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first {
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgress"), object: self)
+            if habbitsSalvation.isAlreadyTakenToday {
+                print("is Already Taken Today")
+            } else {
+                HabitsStore.shared.track(habbitsSalvation)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
+                
+                doneButton.backgroundColor = habbitsSalvation.color
+                let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
+                let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+                doneButton.setImage(imageCheck,for: .normal)
+            }
         }
     }
+    
 }

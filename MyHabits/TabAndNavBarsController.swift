@@ -23,9 +23,6 @@ class TabAndNavBarsController: UITabBarController {
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
-        //if #available(iOS 15.0, *) {
-            //UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-        //}
         
         firstTabNavigationController = UINavigationController.init(rootViewController: HabitsViewController())
         secondTabNavigationController = UINavigationController.init(rootViewController: InfoViewController())

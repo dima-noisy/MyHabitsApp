@@ -71,16 +71,11 @@ public class HabitsViewController: UIViewController {
     
     @objc func addTapped() {
         let newHabitViewController = HabitViewController()
-        //newHabitViewController.delegate = self
-        //newHabitViewController.modalTransitionStyle = .coverVertical
-        //newHabitViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(UINavigationController(rootViewController: newHabitViewController), animated: true)
-        //present(newHabitViewController, animated: true)
     }
     
     func createObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name("AddNewHabbit"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name(rawValue: "updateProgress"), object: nil)
     }
     
     @objc func updateCollection(notification: NSNotification) {
@@ -190,14 +185,6 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         LayoutConstant.spacing
     }
 
-    public func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        LayoutConstant.spacing
-    }
-    
     public func collectionView(
         _ collectionView: UICollectionView,
         willDisplay cell: UICollectionViewCell,
