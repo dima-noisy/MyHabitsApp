@@ -125,9 +125,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
             if habbitsSalvation.isAlreadyTakenToday {
                 print("is Already Taken Today")
             } else {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
-                
                 HabitsStore.shared.track(habbitsSalvation)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
                 
                 doneButton.backgroundColor = habbitsSalvation.color
                 let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
