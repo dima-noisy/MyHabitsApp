@@ -47,16 +47,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
         button.layer.cornerRadius = 20.0
         button.layer.borderWidth = 2.0
         
-        
-        //let habbitsState = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first
-        //if habbitsState!.isAlreadyTakenToday {
-            //let actualBackground = habitName.textColor
-            //doneButton.backgroundColor = actualBackground
-            //let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
-            //let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-            //doneButton.setImage(imageCheck,for: .normal)
-        //}
-        
         button.addTarget(self, action: #selector(didTapDone(_:)), for: .touchUpInside)
         
         return button
@@ -113,7 +103,17 @@ class HabitCollectionViewCell: UICollectionViewCell {
         everyDayAt.text = oneOfHabits.dateString
         let indexSearcher = HabitsStore().habits.firstIndex(of: oneOfHabits)
         counterLabel.text = "Счётчик: \(HabitsStore.shared.habits[indexSearcher!].trackDates.count)"
+        
         doneButton.layer.borderColor = oneOfHabits.color.cgColor
+        
+        let habbitsState = (HabitsStore.shared.habits.filter { $0.name.contains(habitName.text!) } ).first
+        if habbitsState!.isAlreadyTakenToday {
+            let actualBackground = habitName.textColor
+            doneButton.backgroundColor = actualBackground
+            let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
+            let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+            doneButton.setImage(imageCheck,for: .normal)
+        }
     }
     
     @objc func didTapDone(_ sender: UIButton!) {
@@ -127,12 +127,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
             } else {
                 HabitsStore.shared.track(habbitsSalvation)
                 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
-                
                 doneButton.backgroundColor = habbitsSalvation.color
                 let imageConfig = UIImage.SymbolConfiguration(weight: .bold)
                 let imageCheck = UIImage(systemName: "checkmark", withConfiguration: imageConfig)?.withTintColor(.white, renderingMode: .alwaysOriginal)
                 doneButton.setImage(imageCheck,for: .normal)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateProgressByPressCheck"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateCounter"), object: nil)
             }
         }
     }

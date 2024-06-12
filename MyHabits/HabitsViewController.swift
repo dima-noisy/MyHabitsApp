@@ -76,6 +76,7 @@ public class HabitsViewController: UIViewController {
     
     func createObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name("AddNewHabbit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollection(notification:)), name: Notification.Name("updateCounter"), object: nil)
     }
     
     @objc func updateCollection(notification: NSNotification) {
