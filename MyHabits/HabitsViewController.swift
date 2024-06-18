@@ -201,7 +201,9 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
         
         if indexPath.section != 0 {
             let habitDetailsViewController = HabitDetailsViewController()
+            habitDetailsViewController.title = HabitsStore.shared.habits[indexPath.row].name
             navigationController?.pushViewController(habitDetailsViewController, animated: true)
+            //navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
 }

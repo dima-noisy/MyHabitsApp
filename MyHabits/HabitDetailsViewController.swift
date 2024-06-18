@@ -23,7 +23,9 @@ class HabitDetailsViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBackground
-        //navigationItem.title
+        
+        navigationItem.largeTitleDisplayMode = .never
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
         navigationController?.navigationBar.prefersLargeTitles = true
     }
